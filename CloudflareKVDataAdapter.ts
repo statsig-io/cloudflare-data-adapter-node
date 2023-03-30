@@ -22,7 +22,7 @@ export class CloudflareKVDataAdapter implements IDataAdapter {
     if (data === undefined) {
       return { error: new Error(`key (${key}) does not exist`) };
     }
-    return { result: JSON.stringify(data), };
+    return { result: data ?? undefined, };
   }
 
   // eslint-disable-next-line @typescript-eslint/require-await
