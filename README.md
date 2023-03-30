@@ -19,7 +19,7 @@ import { CloudflareKVDataAdapter } from 'statsig-node-cloudflare-kv'
 ```
 5. Create an instance of the `CloudflareKVDataAdapter`
 ```
-const dataAdapter = new CloudflareKVDataAdapter('KEY_FROM_INSTALLATION');
+const dataAdapter = new CloudflareKVDataAdapter(env.YOUR_KV_BINDING, 'statsig-YOUR_COMPANY_ID');
 ```
 6. When initializing the `statsig` sdk, add the adapter to options
 ```
