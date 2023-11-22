@@ -1,4 +1,4 @@
-# Statsig Node Server SDK - Edge Config Adapter
+# Statsig Node Server SDK - Cloudflare KV Adapter
 [![npm version](https://badge.fury.io/js/statsig-node-cloudflare-kv.svg)](https://badge.fury.io/js/statsig-node-cloudflare-kv) 
 
 A first party Cloudflare integration with the [Statsig server-side Node.js SDK](https://github.com/statsig-io/node-js-server-sdk).
