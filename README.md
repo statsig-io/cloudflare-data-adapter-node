@@ -19,8 +19,10 @@ import { CloudflareKVDataAdapter } from 'statsig-node-cloudflare-kv'
 ```
 5. Create an instance of the `CloudflareKVDataAdapter`
 ```
-const dataAdapter = new CloudflareKVDataAdapter(env.YOUR_KV_BINDING, 'statsig-YOUR_COMPANY_ID');
+const dataAdapter = new CloudflareKVDataAdapter(env.YOUR_KV_BINDING, 'statsig-<COMPANY_ID>');
 ```
+> [!TIP]
+> You can find your company ID from the Statsig Console URL `https://console.statsig.com/<COMPANY_ID>`
 6. When initializing the `statsig` sdk, add the adapter to options
 ```
 await statsig.initialize(
