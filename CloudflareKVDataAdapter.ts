@@ -12,7 +12,7 @@ export class CloudflareKVDataAdapter {
   }
 
   public async get(key: string): Promise<AdapterResponse> {
-    if (key !== "statsig.cache") {
+    if (!this.isConfgSpecKey(key)) {
       return {
         error: new Error(`Cloudflare KV Adapter Only Supports Config Specs`),
       };
@@ -44,9 +44,14 @@ export class CloudflareKVDataAdapter {
   public async shutdown(): Promise<void> {}
 
   public supportsPollingUpdatesFor(key: string): boolean {
-    if (key === "statsig.cache") {
+    if (this.isConfgSpecKey(key)) {
       return this.supportConfigSpecPolling;
     }
     return false;
+  }
+
+  private isConfgSpecKey(key: string): boolean {
+    const v2CacheKeyPattern = /^statsig\|\/v[12]\/download_config_specs\|.+\|.+/;
+    return key === "statsig.cache" || v2CacheKeyPattern.test(key);
   }
 }
