@@ -46,7 +46,9 @@ export class CloudflareKVDataAdapter {
   }
 
   public async initialize(): Promise<void> {
-    const data = await this.kvNamespace.get(this.configSpecsKey);
+    const data = await this.kvNamespace.get(this.configSpecsKey, {
+      ...this.options,
+    });
 
     if (data) {
       this.supportConfigSpecPolling = true;
