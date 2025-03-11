@@ -9,16 +9,19 @@ export class CloudflareKVDataAdapter {
   private configSpecsKey: string;
   private kvNamespace: KVNamespace;
   private supportConfigSpecPolling: boolean = false;
+  private options: GetOptions | null = null;
 
-  public constructor(kvNamespace: KVNamespace, key: string) {
+  public constructor(
+    kvNamespace: KVNamespace,
+    key: string,
+    options: GetOptions | null = null
+  ) {
     this.kvNamespace = kvNamespace;
     this.configSpecsKey = key;
+    this.options = options;
   }
 
-  public async get(
-    key: string,
-    options?: GetOptions
-  ): Promise<AdapterResponse> {
+  public async get(key: string): Promise<AdapterResponse> {
     if (!this.isConfgSpecKey(key)) {
       return {
         error: new Error(`Cloudflare KV Adapter Only Supports Config Specs`),
@@ -26,7 +29,7 @@ export class CloudflareKVDataAdapter {
     }
 
     const data = await this.kvNamespace.get(this.configSpecsKey, {
-      ...options,
+      ...this.options,
     });
     if (data === undefined) {
       return { error: new Error(`key (${key}) does not exist`) };
