@@ -1,11 +1,11 @@
-import { KVNamespace, KVNamespaceGetOptions } from "@cloudflare/workers-types";
+import { KVNamespace } from "@cloudflare/workers-types";
 import { AdapterResponse, IDataAdapter } from "statsig-node";
 
 type GetOptions = {
   cacheTtl?: number;
 };
 
-export class CloudflareKVDataAdapter {
+export class CloudflareKVDataAdapter implements IDataAdapter {
   private configSpecsKey: string;
   private kvNamespace: KVNamespace;
   private supportConfigSpecPolling: boolean = false;
